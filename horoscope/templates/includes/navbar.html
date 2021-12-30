@@ -1,0 +1,8 @@
+{% load my_filter %}
+<nav>
+    <a href="{% url 'index'  %}">Главная</a>
+    <a href="google.com">Источник</a>
+    {% for key, value in zodiacs.items %}
+        <a href="{% url 'sign_zodiac'  url=key %}">{{value|split|first}}</a>
+    {% endfor %}   
+</nav>
