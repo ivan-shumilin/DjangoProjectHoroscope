@@ -19,4 +19,9 @@
     {% else %}    
         <h2>{{description_zodiac}}</h2>
     {% endif %}
+    {% for z in zodiacs_sing %}
+        <h3>{{z.description}}</h3>
+    {% endfor %}
+
+
 {% endblock %}

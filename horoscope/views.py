@@ -30,15 +30,18 @@ types_sign_zodiac = {
 
 
 def index(request):
+    zodiac_sings = Zodiak_sing.objects.all()
     context = {
-        'zodiacs': zodiac_dict,
+        'zodiac_sings': zodiac_sings,
     }
     return render(request, 'horoscope/index.html', context=context)
 
 
 def info_about_sing_zodiac(request, url: str):
     description = zodiac_dict.get(url)
+    zodiac_sing = Zodiak_sing.objects.all()
     date = {
+        'zodiacs_sing': zodiac_sing,
         'zodiacs': zodiac_dict,
         'description_zodiac': description,
         'sign': url,

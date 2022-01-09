@@ -15,8 +15,8 @@
 {% block content %}
 {% include 'includes/navbar.html' %}
 <ul>
-    {% for key, value in zodiacs.items %}
-        <li><a href="{% url 'sign_zodiac' url=key %}">{{value|split|first}}</a></li>
+    {% for zodiac_sing in zodiac_sings %}
+        <li><a href="{% url 'sign_zodiac' url=zodiac_sing.name %}">{{zodiac_sing.description|split|first}}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}
