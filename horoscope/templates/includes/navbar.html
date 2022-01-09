@@ -2,7 +2,7 @@
 <nav>
     <a href="{% url 'index'  %}">Главная</a>
     <a href="google.com">Источник</a>
-    {% for key, value in zodiacs.items %}
-        <a href="{% url 'sign_zodiac'  url=key %}">{{value|split|first}}</a>
-    {% endfor %}   
+    {% for zodiac_sing in zodiac_sings %}
+        <a href="{% url 'sign_zodiac' url=zodiac_sing.name %}">{{zodiac_sing.description|split|first}}</a>
+    {% endfor %}
 </nav>
