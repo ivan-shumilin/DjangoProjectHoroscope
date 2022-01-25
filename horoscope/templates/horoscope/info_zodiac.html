@@ -13,15 +13,6 @@
 
 {% block content %}
 {% include 'includes/navbar.html' %}
-    <h1>{{description_zodiac|split|first}}</h1>
-    {% if description_zodiac is None %}
-        <h2>Неверный знак зодиака {{sign}}</h2>
-    {% else %}    
-        <h2>{{description_zodiac}}</h2>
-    {% endif %}
-    {% for z in zodiacs_sing %}
-        <h3>{{z.description}}</h3>
-    {% endfor %}
-
-
+    <h1>{{ zodiac_sing.name }}</h1>
+    <h2>{{ zodiac_sing.description }}</h2>
 {% endblock %}

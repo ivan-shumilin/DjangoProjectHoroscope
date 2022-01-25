@@ -2,7 +2,7 @@ from django import template
 from django.http import response
 from django.http.response import HttpResponse, HttpResponseNotFound
 from django.shortcuts import render
-from horoscope.models import Zodiak_sing
+from horoscope.models import ZodiakSing
 from django.template.loader import render_to_string
 
 # Create your views here.
@@ -30,23 +30,18 @@ types_sign_zodiac = {
 
 
 def index(request):
-    zodiac_sings = Zodiak_sing.objects.all()
     context = {
-        'zodiac_sings': zodiac_sings,
+        'zodiac_sings': ZodiakSing.objects.all(),
     }
     return render(request, 'horoscope/index.html', context=context)
 
 
 def info_about_sing_zodiac(request, url: str):
-    description = zodiac_dict.get(url)
-    zodiac_sing = Zodiak_sing.objects.all()
-    date = {
-        'zodiacs_sing': zodiac_sing,
-        'zodiacs': zodiac_dict,
-        'description_zodiac': description,
-        'sign': url,
+    context = {
+        'zodiac_sing': ZodiakSing.objects.get(code=url),
+        'zodiac_sings': ZodiakSing.objects.all(),
     }
-    return render(request, 'horoscope/info_zodiac.html', context=date)
+    return render(request, 'horoscope/info_zodiac.html', context=context)
 
 
 def info_about_sing_zodiac_by_number(request, url: int):

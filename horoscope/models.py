@@ -1,33 +1,27 @@
 from django.db import models
 
 
-# Create your models here.
-
-class Zodiak_sing(models.Model):
+class ZodiakSing(models.Model):
     name = models.CharField(max_length=255)
-    code = models.CharField(max_length=45)
-    description = models.CharField(max_length=255)
-    element = models.ForeignKey('element', on_delete=models.PROTECT, null=True)
-    calendar = models.OneToOneField('calendar', on_delete=models.PROTECT, null=True)
+    code = models.CharField(max_length=45, unique=True)
+    description = models.TextField(blank=True)
+    date_from = models.DateField()
+    date_to = models.DateField()
+    element = models.CharField(max_length=45)
 
     def __str__(self):
-        return f'{self.name} - {self.description}'
+        return f'{self.name} - {self.code} - {self.description}'
 
 
-class element(models.Model):
+class ZodiakSingTest(models.Model):
     name = models.CharField(max_length=255)
-    code = models.CharField(max_length=45)
-    description = models.CharField(max_length=255)
 
     def __str__(self):
-        return f'{self.name} - {self.description}'
+        return f'{self.name}'
 
-
-class calendar(models.Model):
-    month_from = models.SmallIntegerField(null=True)
-    month_to = models.SmallIntegerField(null=True)
-    day_from = models.SmallIntegerField(null=True)
-    day_to = models.SmallIntegerField(null=True)
-
-    def __str__(self):
-        return f'{self.month_from} - {self.month_to} - {self.day_from} - {self.day_to}'
+#       'name': 'Овен',
+#       'code': 'aries',
+#       'desc': 'Первый знак зодиака, планета Марс.',
+#       'date_from': '21.03.00',
+#       'date_to': '20.04.00',
+#       'element': 'fire',
