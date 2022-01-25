@@ -1,7 +1,7 @@
 from django.db import models
 
 
-class ZodiakSing(models.Model):
+class ZodiacSing(models.Model):
     name = models.CharField(max_length=255)
     code = models.CharField(max_length=45, unique=True)
     description = models.TextField(blank=True)

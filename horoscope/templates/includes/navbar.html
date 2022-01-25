@@ -3,6 +3,6 @@
     <a href="{% url 'index'  %}">Главная</a>
     <a href="google.com">Источник</a>
     {% for zodiac_sing in zodiac_sings %}
-        <a href="{% url 'sign_zodiac' url=zodiac_sing.code %}">{{zodiac_sing.name}}</a>
+        <a href="{% url 'sign_zodiac' code=zodiac_sing.code %}">{{zodiac_sing.name}}</a>
     {% endfor %}
 </nav>
