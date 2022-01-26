@@ -25,6 +25,6 @@ class Command(BaseCommand):  # https://docs.djangoproject.com/en/4.0/howto/custo
                 description=zodiac_sing['desc'],
                 date_from=parse_date(zodiac_sing['date_from']),
                 date_to=parse_date(zodiac_sing['date_to']),
-                element=zodiac_sing['element'],
+                elements=zodiac_sing['element'],
             ))
         ZodiakSing.objects.bulk_create(to_create)  # одним действием отправляем все в базу

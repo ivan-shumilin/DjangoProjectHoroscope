@@ -16,7 +16,7 @@
 {% include 'includes/navbar.html' %}
 <ul>
     {% for zodiac_sing in zodiac_sings %}
-        <li><a href="{% url 'sign_zodiac' url=zodiac_sing.code %}">{{zodiac_sing.name}}</a></li>
+        <li><a href="{% url 'sign_zodiac' code=zodiac_sing.code %}">{{zodiac_sing.name}}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}

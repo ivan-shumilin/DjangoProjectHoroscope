@@ -36,26 +36,22 @@ def index(request):
     return render(request, 'horoscope/index.html', context=context)
 
 
-def info_about_sing_zodiac(request, url: str):
+def get_sing_zodiac(request, code):
     context = {
-        'zodiac_sing': ZodiakSing.objects.get(code=url),
+        'zodiac_sing': ZodiakSing.objects.get(code=code),
         'zodiac_sings': ZodiakSing.objects.all(),
     }
     return render(request, 'horoscope/info_zodiac.html', context=context)
 
 
-def info_about_sing_zodiac_by_number(request, url: int):
+def get_sing_zodiac_by_date(request, url: int):
     if url > len(zodiac_dict):
         return HttpResponseNotFound(f'{url} - very big')
     return HttpResponse(zodiac_dict[list(zodiac_dict)[url - 1]])
 
-
-def type_page(request):
-    rez = ''
-    for key in types_sign_zodiac:
-        rez += f'<li><a href = \'{key}\'>{key}</li>'
-    return HttpResponse(f'<ul>{rez}</ul>')
+def get_sing_zodiac_by_date(request, date):
+    pass
 
 
-def type_page_sing(request, urls):
-    return HttpResponse(types_sign_zodiac[urls])
+def get_sing_by_element_name(request, element):
+    pass
