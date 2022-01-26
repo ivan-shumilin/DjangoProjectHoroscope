@@ -11,17 +11,3 @@ class ZodiakSing(models.Model):
 
     def __str__(self):
         return f'{self.name} - {self.code} - {self.description}'
-
-
-class ZodiakSingTest(models.Model):
-    name = models.CharField(max_length=255)
-
-    def __str__(self):
-        return f'{self.name}'
-
-#       'name': 'Овен',
-#       'code': 'aries',
-#       'desc': 'Первый знак зодиака, планета Марс.',
-#       'date_from': '21.03.00',
-#       'date_to': '20.04.00',
-#       'element': 'fire',
