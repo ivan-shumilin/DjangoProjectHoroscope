@@ -1,8 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}
-    Меню
-{% endblock %}
+{% block title %} Элементы {% endblock %}
 
 {% load static %}
 {% load my_filter %}
@@ -15,8 +13,8 @@
 {% block content %}
 {% include 'includes/navbar.html' %}
 <ul>
-    {% for zodiac_sing in zodiac_sings %}
-        <li><a href="{% url 'sign_zodiac' code=zodiac_sing.code %}">{{zodiac_sing.name}}</a></li>
+    {% for element in elements %}
+        <li><a href="{% url 'get_sing_by_element_name' code=element.code %}">{{element.name}}</a></li>
     {% endfor %}
 </ul>
 {% endblock %}

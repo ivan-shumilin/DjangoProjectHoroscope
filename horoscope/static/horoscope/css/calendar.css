@@ -35,7 +35,10 @@ ul a:hover, ul a:active {
 h1 {
     color: #111;
     text-align: center;
+    font-size: 2rem;
+    text-decoration: none;
+}
 
-    font-size: 48px;
-    text-decoration: underline;
+form {
+text-align: center;
 }

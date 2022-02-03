@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+
+{% block title %}
+{{sign.title}}
+{% endblock %}
+
+{% load static %}
+{% load my_filter %}
+{% block cssadd %}
+<link rel="stylesheet" href="{% static 'horoscope/css/elements_name.css' %}">
+{% endblock %}
+
+{% block content %}
+{% include 'includes/navbar.html' %}
+    <h1>{{ element.name }}</h1>
+    <ul>
+    {% for item in elements %}
+        <li><a href="{% url 'sign_zodiac' code=item.code %}">{{ item.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

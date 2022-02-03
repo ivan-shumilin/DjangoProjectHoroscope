@@ -1,8 +1,7 @@
 {% load my_filter %}
 <nav>
-    <a href="{% url 'index'  %}">Главная</a>
-    <a href="google.com">Источник</a>
-    {% for zodiac_sing in zodiac_sings %}
-        <a href="{% url 'sign_zodiac' code=zodiac_sing.code %}">{{zodiac_sing.name}}</a>
-    {% endfor %}
+    <a href="{% url 'index'  %}">Знаки зодиака</a>
+    <a href="{% url 'get_elements' %}">Элементы</a>
+    <a href="{% url 'calendar' %}">Календарь</a>
 </nav>
+<!--обернуть в <ul>-->
