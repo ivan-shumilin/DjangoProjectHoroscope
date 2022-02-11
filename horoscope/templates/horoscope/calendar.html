@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Поиск знака зодиака по дате
+Поиск знака зодиака по дате
 {% endblock %}
 
 {% load static %}
@@ -14,13 +14,12 @@
 
 {% block content %}
 {% include 'includes/navbar.html' %}
-    <h1>Поиск знака зодиака по дате</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.date_from }}
-        <span>{{ error }}</span>
-        <span>{{ date }}</span>
-        <button type="submit" class="btn btn-success">Отправить</button>
-    </form>
-
+<h1>Поиск знака зодиака по дате</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.date_from }}
+    {{ form.text }}
+    <span>{{ error }}</span>
+    <button type="submit" class="btn btn-success">Отправить</button>
+</form>
 {% endblock %}

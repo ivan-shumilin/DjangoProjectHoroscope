@@ -5,6 +5,8 @@ from django.shortcuts import render, redirect
 from horoscope.models import ZodiakSing, Elements
 from django.template.loader import render_to_string
 from .forms import ZodiakSingForm
+from django.db.models import Q
+
 
 def index(request):
     context = {
@@ -46,17 +48,28 @@ def get_sing_by_element_name(request, code):
     }
     return render(request, 'horoscope/get_sing_by_element_name.html', context=context)
 
+def search_sing_by_date(date):
+    if date.month == 1 and date.day < 21:
+        return (ZodiakSing.objects.get(code='capricorn')).code
+
+    if ZodiakSing.objects.filter(Q(date_from__day__lte=date.day) & Q(date_from__month=date.month)):
+        return (ZodiakSing.objects.get(Q(date_from__day__lte=date.day) & Q(date_from__month=date.month))).code
+    else:
+        return (ZodiakSing.objects.get(Q(date_from__month=(date.month - 1)))).code
+
+
 def calendar(request):
     error = ''
     if request.method == 'POST':
         form = ZodiakSingForm(request.POST)
         if form.is_valid():
             # form.save()
-            return redirect('index')
+            # return HttpResponse(form.cleaned_data["date_from"].day)
+            # return render(request, 'horoscope/calendar.html', context={'date_input': form.cleaned_data["date_from"]})
+            # return redirect(search_sing_by_date(form.cleaned_data["date_from"]))
+            return redirect(f'/{search_sing_by_date(form.cleaned_data["date_from"])}')
         else:
-            error = 'Форма была неверной'
-
-
+            error = 'Некорректные данные'
     form = ZodiakSingForm()
 
     data = {
