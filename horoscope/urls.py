@@ -7,6 +7,6 @@ urlpatterns = [
     path('<str:code>', views.get_sing_zodiac, name='sign_zodiac'),
     path('elements/', views.get_elements, name='get_elements'),
     path('elements/<str:code>', views.get_sing_by_element_name, name='get_sing_by_element_name'),
-    path('calendar/', views.calendar, name='calendar'),
+    path('calendar/', views.get_sing_zodiac_by_date, name='get_sing_zodiac_by_date'),
 ]
 
