@@ -8,18 +8,20 @@
 {% load my_filter %}
 
 {% block cssadd %}
-<link rel="stylesheet" href="{% static 'horoscope/css/calendar.css' %}">
+<link rel="stylesheet" href="{% static 'horoscope/css/index.css' %}">
 {% endblock %}
 
 
 {% block content %}
 {% include 'includes/navbar.html' %}
 <h1>Поиск знака зодиака по дате</h1>
+
 <form method="post">
     {% csrf_token %}
     {{ form.date_from }}
     {{ form.text }}
     <span>{{ error }}</span>
-    <button type="submit" class="btn btn-success">Отправить</button>
+    <button type="submit" class="btn btn-outline-info">Отправить</button>
 </form>
+
 {% endblock %}

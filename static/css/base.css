@@ -1,35 +1,71 @@
-html {
-    background-color: #e8eaeb;
+.ul-style {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+    list-style-type: none;
+    background-color: #ffffff;
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+    width: 60%;
+    max-width: 30rem;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin: 2rem auto;
+    padding: 1px;
 }
 
-body {
-    background-color: #e8eaeb !important;
+.ul-style-2 {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    list-style-type: none;
+    background-color: #ffffff;
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+    width: 60%;
+    max-width: 30rem;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin: 2rem auto;
+    padding: 1px;
 }
 
+.ul-style-1 {
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    column-count: 1;
+    list-style-type: none;
+    background-color: #ffffff;
+    box-shadow: 0 0 4px rgba(0,0,0,0.5);
+    width: 60%;
+    max-width: 30rem;
+    border-radius: 10px;
+    border: 1px solid black;
+    margin: 2rem auto;
+    padding: 1px;
+}
 
-nav {
+.ul-li {
     text-align: center;
-    color: white;
+    width: 100%;
     font-size: 2rem;
-    height: 100%;
-    width: 200px;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    padding-top: 20px;
+    padding: 2rem 1rem;
+    color: #111;
 }
 
-nav a {
-    color: white;
-    display: block;
-    font-size: 1.2rem;
-    margin: 20px;
-    text-decoration: none;
+h1 {
+    text-align: center;
+    font-size: 1.8rem;
 }
 
-nav a:hover, ul a:active {
-  color: #eca8b5;
+h2 {
+    text-align: center;
+    font-size: 1.4rem;
 }
+
+form {
+    margin: 0 auto;
+    width:250px;
+    }
+
+button, input, optgroup, select, textarea {
+    margin: 10px;
+    }

@@ -1,7 +1,19 @@
 {% load my_filter %}
-<nav>
-    <a href="{% url 'index'  %}">Знаки зодиака</a>
-    <a href="{% url 'get_elements' %}">Элементы</a>
-    <a href="{% url 'get_sing_zodiac_by_date' %}">Календарь</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-md">
+      <ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+        <li class="nav-item px-2">
+          <a class="nav-link text-white" aria-current="page" href="{% url 'index'  %}">Знаки зодиака</a>
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link text-white" href="{% url 'get_elements' %}">Элементы</a>
+        </li>
+        <li class="nav-item px-2">
+          <a class="nav-link text-white" href="{% url 'get_sing_zodiac_by_date' %}">Календарь</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
-<!--обернуть в <ul>-->
+
+

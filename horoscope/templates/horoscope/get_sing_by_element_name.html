@@ -8,15 +8,15 @@
 {% load static %}
 {% load my_filter %}
 {% block cssadd %}
-<link rel="stylesheet" href="{% static 'horoscope/css/elements_name.css' %}">
+<link rel="stylesheet" href="{% static 'horoscope/css/index.css' %}">
 {% endblock %}
 
 {% block content %}
 {% include 'includes/navbar.html' %}
     <h1>{{ element.name }}</h1>
-    <ul>
+    <ul class="ul-style-1">
     {% for item in elements %}
-        <li><a href="{% url 'sign_zodiac' code=item.code %}">{{ item.name }}</a></li>
+        <li class='ul-li'><a class="btn btn-outline-dark" href="{% url 'sign_zodiac' code=item.code %}">{{ item.name }}</a></li>
     {% endfor %}
     </ul>
 {% endblock %}
