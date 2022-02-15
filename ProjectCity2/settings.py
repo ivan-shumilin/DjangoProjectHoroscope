@@ -6,8 +6,6 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-import django_on_heroku
-django_on_heroku.settings(locals())
 
 from pathlib import Path
 
