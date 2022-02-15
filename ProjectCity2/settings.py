@@ -143,3 +143,12 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # The URL to use when referring to static files (where they will be served from)
 STATIC_URL = '/static/'
+
+ALLOWED_HOSTS = [
+   '*',
+   'http://whispering-refuge-90007.herokuapp.com/',
+   'https://whispering-refuge-90007.herokuapp.com/',
+   'whispering-refuge-90007.herokuapp.com',
+   'whispering-refuge-90007.herokuapp.com/',
+   '127.0.0.1',
+]
