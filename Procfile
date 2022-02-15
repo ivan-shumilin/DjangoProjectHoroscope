@@ -1,0 +1,1 @@
+web: gunicorn ProjectCity2.wsgi --log-file -
