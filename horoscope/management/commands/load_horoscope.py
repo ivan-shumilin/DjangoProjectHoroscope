@@ -4,7 +4,7 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 from django.utils.dateparse import parse_date
 
-from horoscope.models import ZodiakSing
+from horoscope.models import ZodiakSing, Elements
 
 
 class Command(BaseCommand):  # https://docs.djangoproject.com/en/4.0/howto/custom-management-commands/
@@ -25,6 +25,6 @@ class Command(BaseCommand):  # https://docs.djangoproject.com/en/4.0/howto/custo
                 description=zodiac_sing['desc'],
                 date_from=parse_date(zodiac_sing['date_from']),
                 date_to=parse_date(zodiac_sing['date_to']),
-                elements=zodiac_sing['element'],
+                elements=Elements.objects.get(code=zodiac_sing['element']),
             ))
         ZodiakSing.objects.bulk_create(to_create)  # одним действием отправляем все в базу
