@@ -1,4 +1,4 @@
-from horoscope.models import ZodiakSing, Elements
+from horoscope_app.models import ZodiakSing, Elements
 from django.forms import ModelForm, DateInput
 
 class ZodiakSingForm(ModelForm):

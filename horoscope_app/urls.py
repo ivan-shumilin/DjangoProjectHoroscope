@@ -1,5 +1,5 @@
 from django.urls import path
-from horoscope import views
+from horoscope_app import views
 
 urlpatterns = [
     path('', views.index, name='index'),

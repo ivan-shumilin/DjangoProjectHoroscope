@@ -18,4 +18,4 @@ class ZodiakSing(models.Model):
     elements = models.ForeignKey(Elements, on_delete=models.PROTECT)
 
     def __str__(self):
-        return f'{self.name} - {self.code} - {self.description} - {self.elements}'
+        return f'{self.name} - {self.code} - {self.description}'

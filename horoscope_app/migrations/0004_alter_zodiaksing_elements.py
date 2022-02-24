@@ -7,13 +7,13 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('horoscope', '0003_elements_delete_zodiaksingtest_and_more'),
+        ('horoscope_app', '0003_elements_delete_zodiaksingtest_and_more'),
     ]
 
     operations = [
         migrations.AlterField(
             model_name='zodiaksing',
             name='elements',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='horoscope.elements'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.PROTECT, to='horoscope_app.elements'),
         ),
     ]

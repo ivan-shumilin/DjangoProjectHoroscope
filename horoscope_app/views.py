@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from horoscope.models import ZodiakSing, Elements
+from horoscope_app.models import ZodiakSing, Elements
 from .forms import ZodiakSingForm
 from django.db.models import Q
 
@@ -8,7 +8,7 @@ def index(request):
     context = {
         'zodiac_sings': ZodiakSing.objects.all(),
     }
-    return render(request, 'horoscope/index.html', context=context)
+    return render(request, 'horoscope_app/index.html', context=context)
 
 
 def get_sing_zodiac(request, code):
@@ -16,14 +16,14 @@ def get_sing_zodiac(request, code):
         'zodiac_sing': ZodiakSing.objects.get(code=code),
         'zodiac_sings': ZodiakSing.objects.all(),
     }
-    return render(request, 'horoscope/info_zodiac.html', context=context)
+    return render(request, 'horoscope_app/info_zodiac.html', context=context)
 
 
 def get_elements(request):
     context = {
         'elements': Elements.objects.all(),
     }
-    return render(request, 'horoscope/get_elements.html', context=context)
+    return render(request, 'horoscope_app/get_elements.html', context=context)
 
 
 def get_sing_by_element_name(request, code):
@@ -32,7 +32,7 @@ def get_sing_by_element_name(request, code):
         'element': Elements.objects.get(code=code),
         'elements': ZodiakSing.objects.filter(elements_id=(Elements.objects.get(code=code).id)),
     }
-    return render(request, 'horoscope/get_sing_by_element_name.html', context=context)
+    return render(request, 'horoscope_app/get_sing_by_element_name.html', context=context)
 
 
 def search_sing_by_date(date):
@@ -58,4 +58,4 @@ def get_sing_zodiac_by_date(request):
         'form': form,
         'error': error
     }
-    return render(request, 'horoscope/calendar.html', context=data)
+    return render(request, 'horoscope_app/calendar.html', context=data)

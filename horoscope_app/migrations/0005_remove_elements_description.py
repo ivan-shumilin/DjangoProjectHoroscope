@@ -6,7 +6,7 @@ from django.db import migrations
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('horoscope', '0004_alter_zodiaksing_elements'),
+        ('horoscope_app', '0004_alter_zodiaksing_elements'),
     ]
 
     operations = [
