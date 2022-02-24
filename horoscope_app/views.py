@@ -59,3 +59,7 @@ def get_sing_zodiac_by_date(request):
         'error': error
     }
     return render(request, 'horoscope_app/calendar.html', context=data)
+
+
+def from_test(a, b):
+    return a + b
