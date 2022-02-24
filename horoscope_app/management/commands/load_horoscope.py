@@ -4,7 +4,7 @@ from django.core.management.base import BaseCommand
 from django.db import transaction
 from django.utils.dateparse import parse_date
 
-from horoscope_app.models import ZodiakSing, Elements
+from DjangoProjectHoroscope.horoscope_app.models import ZodiakSing, Elements
 
 
 class Command(BaseCommand):  # https://docs.djangoproject.com/en/4.0/howto/custom-management-commands/

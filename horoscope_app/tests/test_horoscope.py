@@ -1,7 +1,7 @@
-from horoscope_app import views
+from DjangoProjectHoroscope.horoscope_app import views
 import pytest
 import datetime
-from horoscope_app.models import ZodiakSing
+from DjangoProjectHoroscope.horoscope_app.models import ZodiakSing
 from django import forms
 # мне надо передать в форму 2 значения с датами и сравнить ответ с expected
 
