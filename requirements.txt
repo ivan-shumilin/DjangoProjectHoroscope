@@ -22,9 +22,6 @@ pluggy==1.0.0
 psycopg2-binary==2.9.3
 py==1.11.0
 pyparsing==3.0.7
-pytest==7.0.1
-pytest-djangoapp==0.15.2
-pytest-fixtures==0.1.0
 sqlparse==0.4.2
 tomli==2.0.1
 Werkzeug==2.0.3
