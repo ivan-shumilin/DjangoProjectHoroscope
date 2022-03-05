@@ -36,13 +36,11 @@ def get_sing_by_element_name(request, code):
 
 
 def search_sing_by_date(date):
-    if date.month == 1 and date.day < 21:
-        return (ZodiakSing.objects.get(code='capricorn')).code
-
-    if ZodiakSing.objects.filter(Q(date_from__day__lte=date.day) & Q(date_from__month=date.month)):
-        return (ZodiakSing.objects.get(Q(date_from__day__lte=date.day) & Q(date_from__month=date.month))).code
-    else:
-        return (ZodiakSing.objects.get(Q(date_from__month=(date.month - 1)))).code
+    sign = ZodiakSing.objects.filter(
+        Q(date_from__day__lte=date.day, date_from__month=date.month) |
+        Q(date_to__day__gte=date.day, date_to__month=date.month)
+    ).order_by('date_to').first()
+    return sign.code
 
 
 def get_sing_zodiac_by_date(request):
