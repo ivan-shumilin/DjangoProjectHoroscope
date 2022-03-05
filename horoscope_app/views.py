@@ -2,13 +2,19 @@ from django.shortcuts import render, redirect
 from horoscope_app.models import ZodiakSing, Elements
 from .forms import ZodiakSingForm
 from django.db.models import Q
+from django.views import generic
 
 
-def index(request):
-    context = {
-        'zodiac_sings': ZodiakSing.objects.all(),
-    }
-    return render(request, 'horoscope_app/index.html', context=context)
+# def index(request):
+#     context = {
+#         'zodiac_sings': ZodiakSing.objects.all(),
+#     }
+#     return render(request, 'horoscope_app/index.html', context=context)
+class Index(generic.ListView):
+    model = ZodiakSing
+    # Определение имени вашего шаблона и его расположения
+    template_name = 'horoscope_app/index.html'
+
 
 
 def get_sing_zodiac(request, code):
@@ -19,11 +25,15 @@ def get_sing_zodiac(request, code):
     return render(request, 'horoscope_app/info_zodiac.html', context=context)
 
 
-def get_elements(request):
-    context = {
-        'elements': Elements.objects.all(),
-    }
-    return render(request, 'horoscope_app/get_elements.html', context=context)
+# def get_elements(request):
+#     context = {
+#         'elements': Elements.objects.all(),
+#     }
+#     return render(request, 'horoscope_app/get_elements.html', context=context)
+class ElementsView(generic.ListView):
+    model = Elements
+    # Определение имени вашего шаблона и его расположения
+    template_name = 'horoscope_app/get_elements.html'
 
 
 def get_sing_by_element_name(request, code):

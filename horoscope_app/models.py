@@ -17,5 +17,9 @@ class ZodiakSing(models.Model):
     date_to = models.DateField()
     elements = models.ForeignKey(Elements, on_delete=models.PROTECT)
 
+    def get_absolute_url(self):
+        """Returns the url to access a particular book instance."""
+        return reverse('book-detail', args=[str(self.id)])
+
     def __str__(self):
         return f'{self.name} - {self.code} - {self.description}'

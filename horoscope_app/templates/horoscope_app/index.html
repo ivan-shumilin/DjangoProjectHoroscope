@@ -16,7 +16,7 @@
 {% include 'includes/navbar.html' %}
 <h1>Знаки зодиака</h1>
 <ul class="ul-style">
-    {% for zodiac_sing in zodiac_sings %}
+    {% for zodiac_sing in zodiaksing_list %}
 
         <li class='ul-li'><a class="btn btn-outline-dark" href="{% url 'sign_zodiac' code=zodiac_sing.code %}">{{zodiac_sing.name}}</a></li>
 

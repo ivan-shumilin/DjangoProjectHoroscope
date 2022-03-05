@@ -14,7 +14,7 @@
 {% include 'includes/navbar.html' %}
 <h1>Элементы</h1>
 <ul class="ul-style-2">
-    {% for element in elements %}
+    {% for element in elements_list %}
         <li class='ul-li'><a class="btn btn-outline-dark" href="{% url 'get_sing_by_element_name' code=element.code %}">{{element.name}}</a></li>
     {% endfor %}
 </ul>
