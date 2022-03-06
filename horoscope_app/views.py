@@ -69,5 +69,5 @@ def get_sing_zodiac_by_date(request):
     return render(request, 'horoscope_app/calendar.html', context=data)
 
 
-def from_test(a, b):
-    return a + b
+def example(a):
+    return a + 1
