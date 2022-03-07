@@ -1,5 +1,6 @@
 from horoscope_app import views
 import datetime
+from django.urls import reverse
 
 from horoscope_app.forms import ZodiakSingForm
 from horoscope_app.models import ZodiakSing
@@ -36,8 +37,15 @@ class TestHoroscope(TestCase):
         self.assertEqual(302, response.status_code)
         self.assertRedirects(response, '/capricorn')
 
-    def test_get_zodiac_sign(self):
+    def test_get_zodiac_sign_by_date(self):
         response = self.client.get('/capricorn', data={'date_from': '2022-01-02'})
         self.assertEqual(200, response.status_code)
         self.assertEqual(response.context['zodiac_sing'].id, ZodiakSing.objects.get(code='capricorn').id)
         self.assertEqual(len(response.context['zodiac_sings']), 12)
+
+
+    def test_get_sing_by_element_name(self):
+        response = self.client.get(reverse('get_elements'))
+        self.assertEqual(200, response.status_code)
+        self.assertEqual(['horoscope_app/get_elements.html', 'horoscope_app/elements_list.html'], response.template_name)
+        self.assertEqual(len(response.context['elements_list']), 4)
