@@ -14,13 +14,19 @@
 
 {% block content %}
 {% include 'includes/navbar.html' %}
-<h1>Знаки зодиака</h1>
-<ul class="ul-style">
-    {% for zodiac_sing in zodiaksing_list %}
+<div class="container-fluid">
+        <h1>Гороскоп для всех знаков на {{ today }}</h1>
+        <p>{{ forecast }}</p>
+        <ul class="ul-style">
+            {% for zodiac_sing in zodiaksing_list %}
 
-        <li class='ul-li'><a class="btn btn-outline-dark" href="{% url 'sign_zodiac' code=zodiac_sing.code %}">{{zodiac_sing.name}}</a></li>
+                <li class='ul-li'><a class="btn btn-outline-dark" href="{% url 'sign_zodiac' code=zodiac_sing.code %}">{{zodiac_sing.name}}</a></li>
 
-    {% endfor %}
-</ul>
-   
+            {% endfor %}
+        </ul>
+
+
+
+</div>
+
 {% endblock %}

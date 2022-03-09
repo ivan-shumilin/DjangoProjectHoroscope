@@ -3,6 +3,8 @@ from horoscope_app.models import ZodiakSing, Elements
 from .forms import ZodiakSingForm
 from django.db.models import Q
 from django.views import generic
+import requests, datetime
+
 
 
 # def index(request):
@@ -10,11 +12,25 @@ from django.views import generic
 #         'zodiac_sings': ZodiakSing.objects.all(),
 #     }
 #     return render(request, 'horoscope_app/index.html', context=context)
-class Index(generic.ListView):
+def get_forecast_for_api():
+    url = 'https://intense-badlands-65950.herokuapp.com/api/forecast/'  # Полный адрес эндпоинта
+    response = requests.get(url)  # Делаем GET-запрос
+    # Поскольку данные пришли в формате json, переведем их в python
+    response_on_python = response.json()
+    return response_on_python[0]['description']
+
+
+class IndexListView(generic.ListView):
     model = ZodiakSing
-    # Определение имени вашего шаблона и его расположения
+
+    # Определение имени шаблона и его расположения
     template_name = 'horoscope_app/index.html'
 
+    def get_context_data(self, **kwargs):
+        context = super(IndexListView, self).get_context_data(**kwargs)
+        context['forecast'] = get_forecast_for_api()
+        context['today'] = datetime.date.today()
+        return context
 
 
 def get_sing_zodiac(request, code):
@@ -37,10 +53,15 @@ class ElementsView(generic.ListView):
 
 
 def get_sing_by_element_name(request, code):
+    url = 'https://intense-badlands-65950.herokuapp.com/api/forecast/'  # Полный адрес эндпоинта
+    response = requests.get(url)  # Делаем GET-запрос
+    # Поскольку данные пришли в формате json, переведем их в python
+    response_on_python = response.json()
     context = {
         'zodiac_sings': ZodiakSing.objects.all(),
         'element': Elements.objects.get(code=code),
         'elements': ZodiakSing.objects.filter(elements_id=(Elements.objects.get(code=code).id)),
+        'forecast': response_on_python,
     }
     return render(request, 'horoscope_app/get_sing_by_element_name.html', context=context)
 
