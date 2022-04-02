@@ -14,7 +14,10 @@ import requests, datetime
 #     return render(request, 'horoscope_app/index.html', context=context)
 def get_forecast_for_api():
     url = 'https://intense-badlands-65950.herokuapp.com/api/forecast/'  # Полный адрес эндпоинта
-    response = requests.get(url)  # Делаем GET-запрос
+    headers = {'authorization': 'Token 16058768c24b66535820533ba5fabd3381cc8905',
+               'content-type': 'application/json', }
+    # auth = auth=('user', 'pass')
+    response = requests.get(url, headers=headers)  # Делаем GET-запрос
     # Поскольку данные пришли в формате json, переведем их в python
     response_on_python = response.json()
     return response_on_python[0]['description']
@@ -88,7 +91,3 @@ def get_sing_zodiac_by_date(request):
         'error': error
     }
     return render(request, 'horoscope_app/calendar.html', context=data)
-
-
-def example(a):
-    return a + 1
