@@ -13,19 +13,17 @@
 {% block content %}
 {% include 'includes/navbar.html' %}
 <div class="container-fluid">
-        <h2>Гороскоп для всех знаков на {{ today }}</h2>
-        <p>{{ forecast }}</p>
-        <h2>Индивидуалный гороскоп для каждого знака</h2>
-        <ul class="ul-style">
-            {% for zodiac_sing in zodiaksing_list %}
+    <h2>Гороскоп для всех знаков на {{ today }}</h2>
+    <p>{{ forecast_general.description }}</p>
+    <h2>Индивидуалный гороскоп для каждого знака</h2>
+    <ul class="ul-style">
+        {% for zodiac_sing in zodiaksing_list %}
 
-                <li class='ul-li'><a class="btn btn-outline-dark" href="{% url 'sign_zodiac' code=zodiac_sing.code %}">{{zodiac_sing.name}}</a></li>
+        <li class='ul-li'><a class="btn btn-outline-dark" href="{% url 'sign_zodiac' code=zodiac_sing.code %}">{{zodiac_sing.name}}</a>
+        </li>
 
-            {% endfor %}
-        </ul>
-
-
-
+        {% endfor %}
+    </ul>
 </div>
 
 {% endblock %}

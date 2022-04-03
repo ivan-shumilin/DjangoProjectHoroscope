@@ -1,26 +1,39 @@
 from django.shortcuts import render, redirect
-from horoscope_app.models import ZodiakSing, Elements
+from horoscope_app.models import ZodiakSing, Elements, Forecast
 from .forms import ZodiakSingForm
 from django.db.models import Q
 from django.views import generic
 import requests, datetime
 
+from django.core.management.base import BaseCommand
+from django.db import transaction
 
 
-# def index(request):
-#     context = {
-#         'zodiac_sings': ZodiakSing.objects.all(),
-#     }
-#     return render(request, 'horoscope_app/index.html', context=context)
+@transaction.atomic  # инструмент управления транзакциями базы данных
+def load_forecast():
+    # если в Forecast нет прогноза за сегодня парсим его
+    if datetime.date.today() != Forecast.objects.get(sing='general').date_create:
+        Forecast.objects.all().delete()  # очищаем базу данных перед тем как заполнить таблицу
+        forecasts = get_forecast_for_api()
+        to_create = []
+        for forecast in forecasts:
+            to_create.append(Forecast(
+                sing=forecast['sing'],
+                description=forecast['description'],
+            ))
+        Forecast.objects.bulk_create(to_create)
+
+
 def get_forecast_for_api():
+    """ Парсим прогноз """
     url = 'https://intense-badlands-65950.herokuapp.com/api/forecast/'  # Полный адрес эндпоинта
     headers = {'authorization': 'Token 16058768c24b66535820533ba5fabd3381cc8905',
                'content-type': 'application/json', }
-    # auth = auth=('user', 'pass')
     response = requests.get(url, headers=headers)  # Делаем GET-запрос
     # Поскольку данные пришли в формате json, переведем их в python
     response_on_python = response.json()
-    return response_on_python[0]['description']
+
+    return response_on_python
 
 
 class IndexListView(generic.ListView):
@@ -30,25 +43,24 @@ class IndexListView(generic.ListView):
     template_name = 'horoscope_app/index.html'
 
     def get_context_data(self, **kwargs):
+        load_forecast()
         context = super(IndexListView, self).get_context_data(**kwargs)
-        context['forecast'] = get_forecast_for_api()
+        context['forecast_general'] = Forecast.objects.get(sing='general')
+        context['forecast'] = Forecast.objects.all()
         context['today'] = datetime.date.today()
         return context
 
 
 def get_sing_zodiac(request, code):
+    zodiac_sing = ZodiakSing.objects.get(code=code)
     context = {
-        'zodiac_sing': ZodiakSing.objects.get(code=code),
+        'zodiac_sing':zodiac_sing,
+        'forecast_zodiac_sing': Forecast.objects.get(sing=zodiac_sing.name),
         'zodiac_sings': ZodiakSing.objects.all(),
     }
     return render(request, 'horoscope_app/info_zodiac.html', context=context)
 
 
-# def get_elements(request):
-#     context = {
-#         'elements': Elements.objects.all(),
-#     }
-#     return render(request, 'horoscope_app/get_elements.html', context=context)
 class ElementsView(generic.ListView):
     model = Elements
     # Определение имени вашего шаблона и его расположения

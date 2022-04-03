@@ -14,5 +14,8 @@
 {% block content %}
 {% include 'includes/navbar.html' %}
     <h1>{{ zodiac_sing.name }}</h1>
-    <h2>{{ zodiac_sing.description }}</h2>
+    <p>{{ zodiac_sing.description}}</p>
+    <h2>Прогноз на сегоня</h2>
+    <p>{{ forecast_zodiac_sing.description }}</p>
+
 {% endblock %}
