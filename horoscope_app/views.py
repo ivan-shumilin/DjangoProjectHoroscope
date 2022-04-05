@@ -12,13 +12,21 @@ from django.db import transaction
 #
 # Как оптимизировать?
 #
+def have_forecast_today():
+    if len(Forecast.objects.filter(sing='general')) != 0:
+        if datetime.date.today() == Forecast.objects.filter(sing='general')[0].date_create:
+            return True
+    else:
+        return False
+
 
 
 @transaction.atomic  # инструмент управления транзакциями базы данных
 def load_forecast():
     """Записывает прогноз в формате json в модель Forecast"""
     # если в Forecast нет прогноза за сегодня делаем запрос на получение
-    if datetime.date.today() != Forecast.objects.get(sing='general').date_create:
+    have_forecast_today() # проверка есть ли прогноз на сагодня
+    if not have_forecast_today():
         Forecast.objects.all().delete()  # очищаем базу данных перед тем как заполнить таблицу
         forecasts = get_forecast_for_api()
         to_create = []
