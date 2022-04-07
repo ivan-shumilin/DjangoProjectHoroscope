@@ -9,5 +9,6 @@ from django.urls import reverse
 #          Elements.objects.create(name='air', code='air',)
 #
 #     def test_view_url_accessible_by_name(self):
-#         resp = self.client.get(reverse('get_elements'))
 #         self.assertEqual(resp.status_code, 200)
+#         resp = self.client.get(reverse('get_elements'))
+
